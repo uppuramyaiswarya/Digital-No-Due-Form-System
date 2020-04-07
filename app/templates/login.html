@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login">
+        <div class="loginContent" style="text-align: center">
+            <h3>Nodues, an application to track the reports of fee dues</h3>
+        </div>
+        <form action="/login" method="post">
+            <div class="card">
+            <div class="card-header" style="text-align:center">
+                <p>Please login to continue</p>
+            </div>
+            <div class="card-body">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            {{message}}
+                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+                <button class="btn btn-primary" style="display:block; width:100%">Login</button>
+            </div>
+        </div>
+        </form>
+    </div>
+{% endblock %}

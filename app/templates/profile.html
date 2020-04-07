@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile">
+    <div class="card">
+        <div class="card-header" style="font-size: 20px; color: #581845">
+            Profile
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Username:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.username}}</p>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Name:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.first_name | title}} {{user.last_name | title}}</p>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Roll number:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.roll_no}}</p>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Gender:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                            {% if user.gender == 'F' %}
+                                <p>Female</p>
+                            {% else %}
+                                <p>Male</p>
+                            {% endif %}
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>City:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.city | title}}</p>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Email:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.email}}</p>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Branch:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.branch.name | title}}</p>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Year:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.yearcode.year}}</p>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Semester:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.yearcode.semester}}</p>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-lg-3">
+                             <p><strong>Section:</strong></p>
+                         </div>
+                         <div class="col-lg-9">
+                             <p>{{user.yearcode.section}}</p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if total_dues %}
+    {% include 'showdues_main.html' %}
+    {% if total_dues[0] + total_dues[1] + total_dues[2] == 0 %}
+        <h5><a href="#">Download NOC</a></h5>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            You have a due of {{ total_dues[0] + total_dues[1] + total_dues[2] }}, so you cannot download NOC
+        </div>
+    {% endif %}
+{% endif %}
+{% endblock %}

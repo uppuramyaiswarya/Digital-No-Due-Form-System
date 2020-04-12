@@ -104,7 +104,7 @@
 {% if total_dues %}
     {% include 'showdues_main.html' %}
     {% if total_dues[0] + total_dues[1] + total_dues[2] == 0 %}
-        <h5><a href="#">Download NOC</a></h5>
+        <h5><a href="{{url_for('users.nodueform')}}">Download NOC</a></h5>
     {% else %}
         <div class="alert alert-danger" role="alert">
             You have a due of {{ total_dues[0] + total_dues[1] + total_dues[2] }}, so you cannot download NOC

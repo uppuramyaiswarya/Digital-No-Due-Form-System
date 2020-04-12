@@ -74,3 +74,9 @@ def profile():
     due_data, total_dues = [], []
     if not current_user.is_admin:
         due_data, total_dues = generate_total_due_data(current_user.roll_no)
+    return render_template('profile.html', user=current_user, data=due_data, total_dues=total_dues)
+
+@users.route('/no-due-form')
+@login_required
+def nodueform():
+    return render_template('no-due-form.html')
